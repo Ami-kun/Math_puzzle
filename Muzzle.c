@@ -119,16 +119,12 @@ void start_egame(void)
 
 void start_fgame(void)
 {
+    srand(time(NULL));
+    int score=0;
+    int max_score=50;
+    int maxNum=difficulty();
     for (int i=0;i<5;i++)
     {
-
-        srand(time(NULL));
-        int score=0;
-        int max_score=50;
-        int loop=1;
-        int maxNum=difficulty();
-        while(true)
-        {
             int num1=rand()%maxNum;
             int num2=rand()%maxNum;
             int num3=rand()%maxNum;
@@ -151,11 +147,12 @@ void start_fgame(void)
                     char response=get_char("Do you want try again?(Y/N): ");
                     if (response=='y' || response=='Y')
                     {
+                        start_fgame();
                         break;
                     }
                     else if (response=='n' || response=='N')
                     {
-                        printf("Exiting...\n");
+                        printf("GAME OVER\n");
                         return;
                     }
                     else
@@ -164,9 +161,10 @@ void start_fgame(void)
                     }
                 }
             }
-        }
+     }
+     printf("You scored %i/%i\n",score,max_score);
 
-    }
+
 }
 
 
